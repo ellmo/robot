@@ -1,0 +1,3 @@
+That is not a valid command.
+The robot has not been placed on the board yet! Use `Place X Y` command first.
+The robot cannot be placed out of board boundaries.
