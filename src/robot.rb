@@ -15,11 +15,11 @@ class Robot
   end
 
   def teleport x, y
-    @x = x
-    @y = y
+    @x, @y = x, y
   end
 
   def move
+    return false unless (@y + @f[0]).between?(0, 4) && (@x + @f[1]).between?(0,4)
     @y += @f[0]
     @x += @f[1]
   end
