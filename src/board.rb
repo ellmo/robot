@@ -1,5 +1,3 @@
-# coding: utf-8
-
 class Board
   HEIGHT = 5
   WIDTH = 5
@@ -13,7 +11,7 @@ class Board
   def draw row
     if @robot and @robot.y == row
       WIDTH.times.map do |x|
-        @robot.x == x ? "[x]" : "[ ]"
+        @robot.x == x ? "[#{@robot.char}]" : "[ ]"
       end.join
     else
       "[ ]" * WIDTH

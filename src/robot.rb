@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class Robot
   attr_accessor :x, :y, :f, :board
 
@@ -23,6 +25,15 @@ class Robot
     when 1 then 'east'
     when 2 then 'south'
     else 'west'
+    end
+  end
+
+  def char
+    case ROTATIONS.index(@f)
+    when 0 then '△'
+    when 1 then '▷'
+    when 2 then '▽'
+    else '◁'
     end
   end
 
