@@ -1,5 +1,5 @@
-require './src/robot'
-require './src/board'
+require_relative 'src/robot'
+require_relative 'src/board'
 
 @board = Board.new
 @error = nil
