@@ -26,9 +26,12 @@ ARGF.each do |line|
     x, y = Integer($2), Integer($3)
     if (x > 4 || y > 4)
       @error = ERROR_STRINGS[2]
+    elsif @robot
+      (@robot.teleport x, y)
     else
-      @robot ? (@robot.teleport x, y) : (@robot = Robot.new x, y)
+      @robot = Robot.new x, y
       @board.robot = @robot
+      @robot.board = @board
     end
   when /\s*(m|move)/i
     @error = (@robot ? @robot.move : ERROR_STRINGS[1])

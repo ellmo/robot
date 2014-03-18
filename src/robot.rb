@@ -1,5 +1,5 @@
 class Robot
-  attr_accessor :x, :y, :f
+  attr_accessor :x, :y, :f, :board
 
   ROTATIONS = [[1,0], [0,1], [-1,0], [0,-1]]
 
