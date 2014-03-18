@@ -5,7 +5,8 @@ class Robot
 
   ROTATIONS = [[1,0], [0,1], [-1,0], [0,-1]]
 
-  def initialize x, y, f=nil
+  def initialize x, y
+    raise ArgumentError.new unless x.between?(0, 4) && y.between?(0,4)
     teleport x, y
     @f = [1,0]
   end
@@ -15,6 +16,7 @@ class Robot
   end
 
   def teleport x, y
+    return false unless x.between?(0, 4) && y.between?(0,4)
     @x, @y = x, y
   end
 
