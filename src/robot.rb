@@ -5,18 +5,23 @@ class Robot
 
   ROTATIONS = [[1,0], [0,1], [-1,0], [0,-1]]
 
-  def initialize x, y
+  def initialize x, y, f=nil
     teleport x, y
     @f = [1,0]
   end
 
   def rotate dir=1
-    @f = ROTATIONS[ROTATIONS.index(@f) + dir]
+    @f = ROTATIONS[(ROTATIONS.index(@f) + dir) % 4]
   end
 
   def teleport x, y
     @x = x
     @y = y
+  end
+
+  def move
+    @y += @f[0]
+    @x += @f[1]
   end
 
   def facing

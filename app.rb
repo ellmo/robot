@@ -35,6 +35,10 @@ ARGF.each do |line|
     end
   when /\s*(m|move)/i
     @error = (@robot ? @robot.move : ERROR_STRINGS[1])
+  when /\s*(l|left)/i
+    @error = (@robot ? @robot.rotate(-1) : ERROR_STRINGS[1])
+  when /\s*(r|right)/i
+    @error = (@robot ? @robot.rotate(1) : ERROR_STRINGS[1])
   when /\s*(e|report)/i
     @error = (@robot ? @robot.report : ERROR_STRINGS[1])
   when /\s*(q|quit)/i
