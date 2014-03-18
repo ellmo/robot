@@ -1,7 +1,5 @@
-require 'rubygems'
-require 'pry'
-require_relative 'src/robot'
-require_relative 'src/board'
+require './src/robot'
+require './src/board'
 
 @board = Board.new
 @error = nil
@@ -9,7 +7,7 @@ ERROR_STRINGS = File.read('error_strings.txt').split("\n")
 
 def redraw
   system("clear") || system("cls")
-  puts " #{' '*15} [P]LACE {x} {y}"
+  puts " #{' ' * 15} [P]LACE {x} {y}"
   puts "#{@board.draw 0}  [M]OVE"
   puts "#{@board.draw 1}  [L]EFT"
   puts "#{@board.draw 2}  [R]IGHT"
@@ -25,10 +23,15 @@ ARGF.each do |line|
   @error = nil
   case line.strip
   when /\s*(p|place)\s+(\d)\s+(\d)/i
-    @robot = Robot.new Integer($2), Integer($3)
-    @board.robot = @robot
+    x, y = Integer($2), Integer($3)
+    if (x > 4 || y > 4)
+      @error = ERROR_STRINGS[2]
+    else
+      @robot ? (@robot.teleport x, y) : (@robot = Robot.new x, y)
+      @board.robot = @robot
+    end
   when /\s*(m|move)/i
-    @robot ? @robot.move : (@error = ERROR_STRINGS[1])
+    @error = (@robot ? @robot.move : ERROR_STRINGS[1])
   when /\s*(e|report)/i
     @error = (@robot ? @robot.report : ERROR_STRINGS[1])
   when /\s*(q|quit)/i
